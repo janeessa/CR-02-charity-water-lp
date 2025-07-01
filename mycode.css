@@ -89,6 +89,7 @@ nav a:hover::after {
   align-items: center; /* Vertically center children */
   gap: 40px;
   min-height: 80vh; /* Make hero section take most of the viewport height */
+  justify-content: center; /* Center the content horizontally */
 }
 
 /* Text Area */
@@ -165,12 +166,19 @@ nav a:hover::after {
 
 /* Image Section */
 .image-section {
-  flex: 1;
-  text-align: center;
+  flex: 2; /* Make the right side (image) larger */
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start; /* Start image at the center of the page */
+  height: 100%;
+  /* Remove text-align: center for better stretching */
 }
 
 .image-section img {
-  max-width: 100%;
+  width: 100%;      /* Fill the section horizontally */
+  height: 850px;    /* Make the image even taller */
+  max-width: none;  /* Allow image to grow beyond parent max-width */
+  object-fit: cover;
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
@@ -220,5 +228,4 @@ nav a:hover::after {
     flex-direction: column;
     gap: 5px;
   }
-}
 }
