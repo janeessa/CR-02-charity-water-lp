@@ -1,5 +1,5 @@
 # Week 2 Project: Build the charity: water Landing Page
-To get started, create a new Codespace from this repo.
+To get started, create a new Codespace from this repo..
 
 In this Project, you’ll transform your Canva mockup into a fully functional landing page using HTML and CSS. This is your chance to take your creative concept — with your brand visuals, your messaging, and your imagery — and make it real. You'll build a site that not only looks great, but also educates, inspires, and drives action.
 
