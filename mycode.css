@@ -1,0 +1,224 @@
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /* Use Proxima Nova for all text on the page */
+  font-family: "Proxima Nova", Avenir;
+  background-color: #fff8e1;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Navigation Bar */
+.navbar {
+  display: flex;
+  justify-content: center; /* Center the nav links */
+  align-items: center;
+  padding: 20px 5%;
+  background-color: white;
+  border-bottom: 1px solid #ddd;
+  flex-wrap: wrap;
+  position: relative; /* Needed for absolute positioning of logo */
+}
+
+.logo {
+  position: absolute;
+  left: 5%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #0074c2;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 0; /* We use margin for custom spacing */
+  padding: 0;
+  margin: 0;
+}
+
+/* Add more space to the right of the first and second nav items for symmetry */
+nav ul li:nth-child(1) {
+  margin-right: 48px; /* Space between first and second */
+}
+nav ul li:nth-child(2) {
+  margin-right: 48px; /* Space between second and third */
+}
+
+nav a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #0074c2;
+  transition: width 0.3s ease;
+}
+
+nav a:hover {
+  color: #0074c2;
+}
+
+nav a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 40px 5%;
+  align-items: center; /* Vertically center children */
+  gap: 40px;
+  min-height: 80vh; /* Make hero section take most of the viewport height */
+}
+
+/* Text Area */
+.text-section {
+  flex: 1;
+  max-width: 500px;
+  display: flex; /* Use flex to center content vertically */
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center content vertically */
+  align-items: center; /* Center content horizontally */
+  text-align: center; /* Center text */
+  height: 100%; /* Take full height of parent */
+}
+
+.text-section h1 {
+  color: #003366; /* Make the heading the same color as the highlight */
+  font-size: 2rem;
+  margin-bottom: 15px;
+  font-weight: normal; /* Make heading not bold */
+}
+
+.text-section p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+/* Style for the call-to-action button */
+.cta-button {
+  display: inline-block;
+  background-color: #ffd200;
+  padding: 12px 24px;
+  font-weight: normal; /* Make button text not bold */
+  color: black;
+  text-decoration: none;
+  border-radius: 8px;
+  margin-top: 10px;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  /* Button will be centered by parent text-align: center */
+  align-self: center; /* Center button horizontally */
+}
+
+.cta-button:hover {
+  background-color: #ffcc00;
+  transform: scale(1.05);
+}
+
+.stats {
+  margin-top: 40px;
+}
+
+.stats p {
+  margin-bottom: 10px;
+}
+
+.stats .flow {
+  display: flex;
+  flex-wrap: nowrap; /* Prevent items from wrapping to the next line */
+  gap: 10px;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  align-items: center;
+}
+
+/* Style for main flow text in the stats section */
+.flow-main {
+  color: #003366; /* Use the same color as the heading and highlight */
+}
+
+.stats .highlight {
+  color: #003366; /* Use the requested color */
+  font-weight: normal; /* Make sure text is not bold */
+  white-space: nowrap; /* Keep this text on one line */
+}
+
+/* Image Section */
+.image-section {
+  flex: 1;
+  text-align: center;
+}
+
+.image-section img {
+  max-width: 100%;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+}
+
+.image-section img:hover {
+  transform: scale(1.02);
+}
+
+/* Style for the charity: water logo image */
+.cw-logo {
+  height: 40px;
+  vertical-align: middle;
+  /* Remove filter if present so the logo is visible */
+  /* filter: brightness(0) invert(1); */
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+  .hero-section {
+    flex-direction: column;
+  }
+
+  .text-section, .image-section {
+    max-width: 100%;
+  }
+
+  nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 500px) {
+  .text-section h1 {
+    font-size: 1.5rem;
+  }
+
+  .cta-button {
+    width: 100%;
+    text-align: center;
+  }
+
+  .stats .flow {
+    flex-direction: column;
+    gap: 5px;
+  }
+}
+}
