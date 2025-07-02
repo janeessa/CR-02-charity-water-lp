@@ -125,22 +125,28 @@ nav a:hover::after {
 
 /* Style for the call-to-action button */
 .cta-button {
-  display: inline-block;
-  background-color: #ffc907;
-  padding: 12px 24px;
-  font-weight: normal; /* Make button text not bold */
-  color: black;
+  background-color: #ffd700; /* bright yellow for charity: water */
+  color: #222;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.1em;
+  font-weight: bold;
   text-decoration: none;
-  border-radius: 8px;
-  margin-top: 10px;
-  transition: transform 0.2s ease, background-color 0.3s ease;
-  /* Button will be centered by parent text-align: center */
-  align-self: center; /* Center button horizontally */
+  cursor: pointer;
+  /* Add a smooth transition for background and transform */
+  transition: background 0.3s, transform 0.3s;
+  opacity: 0; /* Start invisible */
+  transform: scale(0.7); /* Start smaller, like a drop */
+  border-radius: 50%; /* Start round, like a drop */
+  animation: water-drop-fade-in 1.2s ease-out forwards;
+  animation-delay: 0.5s; /* Start after a short delay for nice effect */
 }
 
+/* Button hover effect: slightly darker and a little bigger */
 .cta-button:hover {
-  background-color: #fff7e1;
-  transform: scale(1.05);
+  background-color: #e6c200; /* a bit darker yellow */
+  transform: scale(1.05); /* make the button a bit larger */
 }
 
 .stats {
@@ -199,6 +205,50 @@ nav a:hover::after {
   transition: transform 0.3s ease;
   margin: 0;
   background: white;        /* Match the section background */
+  opacity: 0; /* Start invisible */
+  transform: translateY(40px); /* Start lower, like water rising */
+  animation: water-fade-in 1.5s ease-out forwards; /* Play animation on load */
+}
+
+/* When you hover over the image, it zooms in a little */
+.image-section img:hover {
+  transform: scale(1.04);
+}
+
+/* Animation for the water-like fade-in effect */
+@keyframes water-fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Reuse the water drop animation for the button */
+@keyframes water-drop-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+    border-radius: 50%;
+  }
+  60% {
+    opacity: 0.7;
+    transform: scale(1.08);
+    border-radius: 30%;
+  }
+  80% {
+    opacity: 1;
+    transform: scale(0.97);
+    border-radius: 10%;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+    border-radius: 4px; /* Match the normal button style */
+  }
 }
 
 /* Style for the charity: water logo image */
@@ -207,6 +257,13 @@ nav a:hover::after {
   vertical-align: middle;
   /* Remove filter if present so the logo is visible */
   /* filter: brightness(0) invert(1); */
+}
+
+/* Make the word "YOU" stand out with color and bold, but no animation */
+.jump-out {
+  color: #ffd700; /* Bright yellow to match the brand */
+  font-weight: bold;
+  display: inline; /* No animation, just color and bold */
 }
 
 /* Responsive Design for tablets and smaller screens */
