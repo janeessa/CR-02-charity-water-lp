@@ -23,6 +23,7 @@ body {
   border-bottom: 1px solid #ddd;
   flex-wrap: wrap;
   position: relative; /* Needed for absolute positioning of logo */
+  height: 80px; /* Set a fixed height for the navbar */
 }
 
 .logo {
@@ -46,12 +47,14 @@ nav ul {
   margin: 0;
 }
 
-/* Add more space to the right of the first and second nav items for symmetry */
-nav ul li:nth-child(1) {
-  margin-right: 48px; /* Space between first and second */
+/* Add more space to the right of each nav item */
+nav ul li {
+  margin-right: 100px; /* Add space to the right of every nav item */
 }
-nav ul li:nth-child(2) {
-  margin-right: 48px; /* Space between second and third */
+
+/* Remove extra margin from the last nav item */
+nav ul li:last-child {
+  margin-right: 0;
 }
 
 nav a {
@@ -84,24 +87,28 @@ nav a:hover::after {
 /* Hero Section */
 .hero-section {
   display: flex;
-  flex-wrap: wrap;
-  padding: 40px 5%;
-  align-items: center; /* Vertically center children */
-  gap: 40px;
-  min-height: 80vh; /* Make hero section take most of the viewport height */
-  justify-content: center; /* Center the content horizontally */
+  flex-wrap: nowrap;         /* Prevent wrapping for perfect alignment */
+  padding: 0;
+  align-items: stretch;      /* Stretch both sides to full height */
+  gap: 0;
+  min-height: calc(100vh - 80px); /* Take up the rest of the viewport below navbar */
+  justify-content: center;
+  background-color: #fff8e1;
+  position: relative;
 }
 
 /* Text Area */
 .text-section {
-  flex: 1;
-  max-width: 500px;
-  display: flex; /* Use flex to center content vertically */
-  flex-direction: column; /* Stack children vertically */
-  justify-content: center; /* Center content vertically */
-  align-items: center; /* Center content horizontally */
-  text-align: center; /* Center text */
-  height: 100%; /* Take full height of parent */
+  flex: 1 1 50vw;            /* Take up half the viewport width */
+  max-width: 50vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: auto; /* Remove fixed height so it fits content */
+  min-height: calc(100vh - 80px); /* Match hero-section height */
+  box-sizing: border-box;
 }
 
 .text-section h1 {
@@ -166,26 +173,32 @@ nav a:hover::after {
 
 /* Image Section */
 .image-section {
-  flex: 2; /* Make the right side (image) larger */
+  flex: 1 1 50vw;            /* Take up half the viewport width */
+  max-width: 50vw;
   display: flex;
   align-items: stretch;
-  justify-content: flex-start; /* Start image at the center of the page */
-  height: 100%;
-  /* Remove text-align: center for better stretching */
+  justify-content: flex-start;
+  height: auto;
+  min-height: calc(100vh - 80px); /* Match hero-section height */
+  overflow: hidden;
+  box-sizing: border-box;
+  /* Remove border-radius so image fills all corners */
+  /* background: white; */
 }
 
 .image-section img {
-  width: 100%;      /* Fill the section horizontally */
-  height: 850px;    /* Make the image even taller */
-  max-width: none;  /* Allow image to grow beyond parent max-width */
-  object-fit: cover;
-  border-radius: 10px;
+  /* Make the image fill the whole right side */
+  width: 100%;              /* Fill the width of the section */
+  height: 100%;            /* Fill the height of the section */
+  object-fit: cover;      /* Show the whole image, no cropping */
+  object-position: center;  /* Center the image in the section */
+  display: block;
+  /* Remove border-radius so image fills all corners */
+  /* border-radius: 10px; */
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: transform 0.3s ease;
-}
-
-.image-section img:hover {
-  transform: scale(1.02);
+  margin: 0;
+  background: white;        /* Match the section background */
 }
 
 /* Style for the charity: water logo image */
@@ -196,36 +209,85 @@ nav a:hover::after {
   /* filter: brightness(0) invert(1); */
 }
 
-/* Responsive Design */
+/* Responsive Design for tablets and smaller screens */
 @media (max-width: 900px) {
+  /* Stack the hero section vertically */
   .hero-section {
-    flex-direction: column;
+    flex-direction: column; /* Stack text and image sections */
+    min-height: auto; /* Remove fixed min-height */
   }
 
-  .text-section, .image-section {
+  /* Make both sections take full width */
+  .text-section,
+  .image-section {
     max-width: 100%;
+    min-width: 0;
+    min-height: auto;
+    height: auto;
   }
 
+  /* Adjust navigation for smaller screens */
   nav ul {
-    flex-direction: column;
+    flex-direction: column; /* Stack nav links vertically */
     align-items: flex-start;
     gap: 10px;
     margin-top: 10px;
   }
-}
 
-@media (max-width: 500px) {
-  .text-section h1 {
-    font-size: 1.5rem;
+  /* Add spacing below the logo for stacked nav */
+  .logo {
+    position: static;
+    transform: none;
+    margin-bottom: 10px;
+    left: 0;
+    top: 0;
   }
 
+  .navbar {
+    flex-direction: column;
+    height: auto;
+    padding: 20px 5%;
+    align-items: flex-start;
+  }
+}
+
+/* Responsive Design for mobile screens */
+@media (max-width: 500px) {
+  /* Make heading smaller */
+  .text-section h1 {
+    font-size: 1.2rem;
+  }
+
+  /* Make button full width */
   .cta-button {
     width: 100%;
     text-align: center;
+    font-size: 1rem;
   }
 
+  /* Stack stats flow vertically */
   .stats .flow {
     flex-direction: column;
     gap: 5px;
+  }
+
+  /* Reduce nav spacing for small screens */
+  nav ul li {
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
+
+  /* Make image shorter for small screens */
+  .image-section img {
+    height: 200px;
+    min-height: 150px;
+    max-height: 250px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  /* Reduce padding in navbar */
+  .navbar {
+    padding: 10px 2%;
   }
 }
