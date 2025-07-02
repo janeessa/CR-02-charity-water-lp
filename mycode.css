@@ -126,7 +126,7 @@ nav a:hover::after {
 /* Style for the call-to-action button */
 .cta-button {
   display: inline-block;
-  background-color: #ffd200;
+  background-color: #ffc907;
   padding: 12px 24px;
   font-weight: normal; /* Make button text not bold */
   color: black;
@@ -139,7 +139,7 @@ nav a:hover::after {
 }
 
 .cta-button:hover {
-  background-color: #ffcc00;
+  background-color: #fff7e1;
   transform: scale(1.05);
 }
 
